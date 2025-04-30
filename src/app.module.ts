@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common'
-
-import { AmbientController } from './domain/ambient/ambient.controller'
-import { GetAmbientTemperature } from './application/use-cases/get-ambient-temperature'
-import { GetAmbientHumidity } from './application/use-cases/get-ambient-humidity'
+import { MongooseModule } from '@nestjs/mongoose'
+import { MeasurementsModule } from './domain/measurements/measurements.module'
 
 @Module({
-    imports: [],
-    controllers: [
-        AmbientController
+    imports: [
+        MongooseModule.forRoot('mongodb://192.168.10.4:27017', {
+            dbName: 'hydroponics'
+        }),
+        MeasurementsModule
     ],
-    providers: [
-        GetAmbientTemperature,
-        GetAmbientHumidity
-    ]
 })
 export class AppModule {}

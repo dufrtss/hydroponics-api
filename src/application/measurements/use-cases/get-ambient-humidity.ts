@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class GetAmbientTemperature {
+export class GetAmbientHumidityUseCase {
     execute(): string {
-        return 'Ambient Temperature Got!'
+        return 'Ambient Humidity Got!'
     }
 }
