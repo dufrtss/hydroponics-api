@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 import { MeasurementsModule } from './domain/measurements/measurements.module'
+import { PrismaService } from './infrastructure/prisma/prisma.service'
 
 @Module({
     imports: [
@@ -9,5 +10,8 @@ import { MeasurementsModule } from './domain/measurements/measurements.module'
         }),
         MeasurementsModule
     ],
+    providers: [
+        PrismaService
+    ]
 })
 export class AppModule {}
