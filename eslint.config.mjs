@@ -9,6 +9,8 @@ export default tseslint.config(
       'eslint.config.mjs',
       'node_modules/',
       'dist/',
+      'generated/',
+      'coverage/'
     ],
   },
   eslint.configs.recommended,
