@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common'
 
 import { GetAmbientHumidityUseCase } from 'src/application/measurements/use-cases/get-ambient-humidity'
 import { GetAmbientTemperatureUseCase } from 'src/application/measurements/use-cases/get-ambient-temperature'
-import { Measurement } from './measurements/schemas/measurement.schema'
+import { Measurement } from '../infrastructure/mongoose/schemas/measurement.schema'
 
 @Controller('/sensors')
 export class MeasurementsController {

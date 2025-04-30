@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { Measurement } from 'src/domain/measurements/schemas/measurement.schema'
+import { Measurement } from 'src/infrastructure/mongoose/schemas/measurement.schema'
 
 @Injectable()
 export class GetAmbientTemperatureUseCase {
