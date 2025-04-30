@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 import { MeasurementsModule } from './domain/measurements/measurements.module'
 import { PrismaService } from './infrastructure/prisma/prisma.service'
+import { GetAccountController } from './infrastructure/http/controllers/get-account.controller'
+import { CreateAccountController } from './infrastructure/http/controllers/create-account.controller'
 
 @Module({
     imports: [
@@ -9,6 +11,10 @@ import { PrismaService } from './infrastructure/prisma/prisma.service'
             dbName: 'hydroponics'
         }),
         MeasurementsModule
+    ],
+    controllers: [
+        GetAccountController,
+        CreateAccountController
     ],
     providers: [
         PrismaService
