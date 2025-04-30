@@ -1,0 +1,8 @@
+services:
+  mongodb:
+    image: mongo:4.4.18
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongodb:/data/db
+    restart: unless-stopped
