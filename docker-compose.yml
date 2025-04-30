@@ -4,10 +4,13 @@ services:
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_USER: hydroadmin
+      POSTGRES_PASSWORD: hydropass
       POSTGRES_DB: hydroponics
       PGDATA: /data/postgres
     volumes:
       - ./data/postgres:/data/postgres
+    restart: unless-stopped
 
   mongodb:
     image: mongo:4.4.18
