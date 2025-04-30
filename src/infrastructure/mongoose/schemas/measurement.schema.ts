@@ -6,9 +6,9 @@ export type MeasurementDocument = HydratedDocument<Measurement>;
 
 @Schema()
 export class Measurement {
-  @Prop() sensor: string
-  @Prop() timestamp: number
-  @Prop(SensorRead) data: SensorRead
+  @Prop({ type: String, required: false }) sensor?: string
+  @Prop({ type: String, required: false }) timestamp?: number
+  @Prop({ type: SensorRead, required: false }) data?: SensorRead
 }
 
 export const MeasurementSchema = SchemaFactory.createForClass(Measurement)
