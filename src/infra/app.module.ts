@@ -5,6 +5,7 @@ import { envSchema } from './env/env'
 import { AuthModule } from './auth/auth.module'
 import { HttpModule } from './http/http.module'
 import { EnvModule } from './env/env.module'
+import { EnvService } from './env/env.service'
 
 @Module({
     imports: [
@@ -12,8 +13,13 @@ import { EnvModule } from './env/env.module'
             validate: (env) => envSchema.parse(env),
             isGlobal: true
         }),
-        MongooseModule.forRoot('mongodb://192.168.10.4:27017', {
-            dbName: 'hydroponics'
+        MongooseModule.forRootAsync({
+            imports: [EnvModule],
+            inject: [EnvService],
+            useFactory: (envService: EnvService) => ({
+                uri: envService.get('MONGODB_DATABASE_URL'),
+                dbName: envService.get('MONGODB_DBNAME')
+            })
         }),
         AuthModule,
         HttpModule,

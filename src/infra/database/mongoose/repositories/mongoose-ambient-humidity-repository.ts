@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class MongooseAmbientHumidityRepository implements AmbientHumidityRepository {
-    constructor(@InjectModel('measurements') private measurements: Model<Measurement>) {}
+    constructor(@InjectModel(Measurement.name) private measurements: Model<Measurement>) {}
     
     async findMany(): Promise<Measurement[]> {
         const measurements = await this.measurements.find({

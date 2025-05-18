@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 
 import { PrismaService } from './prisma/prisma.service'
-import { MeasurementSchema } from './mongoose/schemas/measurement.schema'
+import { Measurement, MeasurementSchema } from './mongoose/schemas/measurement.schema'
 
 import { AccountsRepository } from '@/domain/account/application/repositories/accounts-repository'
 import { PrismaAccountsRepository } from './prisma/repositories/prisma-accounts-repository'
@@ -14,7 +14,7 @@ import { MongooseAmbientHumidityRepository } from './mongoose/repositories/mongo
 @Module({
     imports: [
         MongooseModule.forFeature([
-            { name: 'measurements', schema: MeasurementSchema }
+            { name: Measurement.name, schema: MeasurementSchema }
         ])
     ],
     providers: [
