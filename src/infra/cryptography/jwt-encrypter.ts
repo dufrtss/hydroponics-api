@@ -14,6 +14,8 @@ export class JwtEncrypter implements Encrypter {
      * @returns A promise that resolves to the encrypted JWT token.
      */
     encrypt(payload: Record<string, unknown>): Promise<string> {
-        return this.jwt.signAsync(payload)
+        return this.jwt.signAsync(payload, {
+            expiresIn: '7d'
+        })
     }
 }
