@@ -13,6 +13,8 @@ import { AuthenticateAccountUseCase } from '@/domain/account/application/use-cas
 import { RegisterAccountUseCase } from '@/domain/account/application/use-cases/register-account'
 import { GetAmbientTemperatureUseCase } from '@/domain/measurement/application/use-cases/get-ambient-temperature'
 import { GetAmbientHumidityUseCase } from '@/domain/measurement/application/use-cases/get-ambient-humidity'
+import { FetchAccountsUseCase } from '@/domain/account/application/use-cases/fetch-accounts'
+import { GetAccountUseCase } from '@/domain/account/application/use-cases/get-account'
 
 @Module({
     imports: [
@@ -29,6 +31,8 @@ import { GetAmbientHumidityUseCase } from '@/domain/measurement/application/use-
     ],
     providers: [
         AuthenticateAccountUseCase,
+        GetAccountUseCase,
+        FetchAccountsUseCase,
         RegisterAccountUseCase,
         GetAmbientTemperatureUseCase,
         GetAmbientHumidityUseCase

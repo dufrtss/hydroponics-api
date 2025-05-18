@@ -1,3 +1,4 @@
+import { PaginationParams } from '@/core/repositories/pagination-params'
 import { AccountsRepository } from '@/domain/account/application/repositories/accounts-repository'
 import { Account } from '@/domain/account/enterprise/entities/account'
 
@@ -24,8 +25,16 @@ export class InMemoryAccountsRepository implements AccountsRepository {
         return account
     }
 
-    async findMany() {
-        return this.items
+    async findMany({ page }: PaginationParams) {
+        const paginatedItens = this.items
+            .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+            .slice(
+                (page - 1) * 20,
+                page * 20
+            )
+
+        return paginatedItens
+
     }
 
     async create(account: Account) {
@@ -33,8 +42,22 @@ export class InMemoryAccountsRepository implements AccountsRepository {
     }
 
     async update(account: Account) {
+        const itemIndex = this.items.findIndex(
+            (item) => item.id.toString() == account.id.toString()
+        )
+
+        if (itemIndex >= 0) {
+            this.items[itemIndex] = account
+        }
     }
 
     async delete(account: Account) {
+        const itemIndex = this.items.findIndex(
+            (item) => item.id.toString() === account.id.toString()
+        )
+
+        if (itemIndex >= 0) {
+            this.items.splice(itemIndex, 1)
+        }
     }
 }

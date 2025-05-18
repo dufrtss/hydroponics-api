@@ -1,8 +1,8 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common'
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
+import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
-import { PrismaService } from '@/infra/database/prisma/prisma.service'
 import { z } from 'zod'
+import { FetchAccountsUseCase } from '@/domain/account/application/use-cases/fetch-accounts'
+import { AccountPresenter } from '../presenters/account-presenter'
 
 const pageQueryParamSchema = z
     .string()
@@ -15,22 +15,21 @@ type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
 const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema)
 
 @Controller('/accounts')
-@UseGuards(JwtAuthGuard)
 export class FetchAccountsController {
-    constructor(private prisma: PrismaService) {}
+    constructor(private fetchAccounts: FetchAccountsUseCase) {}
 
     @Get()
     async handle(@Query('page', queryValidationPipe) page: PageQueryParamSchema) {
-        const perPage = 20
+        const result = await this.fetchAccounts.execute({ page })
 
-        const accounts = await this.prisma.user.findMany({
-            take: perPage,
-            skip: (page - 1) * perPage,
-            orderBy: {
-                createdAt: 'desc'
-            }
-        })
+        if (result.isLeft()) {
+            throw new BadRequestException()
+        }
 
-        return { accounts }
+        const accounts = result.value.accounts
+
+        return {
+            accounts: accounts.map((account) => AccountPresenter.toHTTP(account))
+        }
     }
 }
