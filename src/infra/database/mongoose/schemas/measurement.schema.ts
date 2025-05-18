@@ -5,14 +5,21 @@ export type MeasurementDocument = HydratedDocument<Measurement>;
 
 @Schema()
 export class Measurement {
-    sensor: string | undefined
-    timestamp: number | undefined
+    @Prop({
+        required: true
+    })
+        sensor!: string
+
+    @Prop({
+        required: true
+    })
+        timestamp!: number
 
     @Prop(raw({
-        value: { type: Number },
-        unit: { type: String }
+        value: { type: Number, required: true },
+        unit: { type: String, required: true }
     }))
-        data: Record<string | number, any> | undefined
+        data!: Record<string | number, any>
 }
 
 export const MeasurementSchema = SchemaFactory.createForClass(Measurement)
