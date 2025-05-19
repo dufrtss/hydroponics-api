@@ -1,9 +1,9 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { TimePeriodParams } from '@/core/repositories/time-period-params'
-import { AmbientTemperatureRepository } from '@/domain/measurement/application/repositories/ambient-temperature-repository'
+import { AmbientHumidityRepository } from '@/domain/measurement/application/repositories/ambient-humidity-repository'
 import { Measurement } from '@/domain/measurement/enterprise/entities/measurement'
 
-export class InMemoryAmbientTemperatureRepository implements AmbientTemperatureRepository {
+export class InMemoryAmbientHumidityRepository implements AmbientHumidityRepository {
     public items: Measurement[] = []
 
     async findMany(
