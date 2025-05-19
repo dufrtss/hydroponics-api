@@ -10,7 +10,7 @@ export interface MeasurementData {
 export interface MeasurementProps {
   sensor: string
   timestamp: number
-  data: Record<string | number, MeasurementData>
+  data: MeasurementData
 }
 
 export class Measurement extends Entity<MeasurementProps> {
@@ -26,7 +26,7 @@ export class Measurement extends Entity<MeasurementProps> {
         return this.props.data
     }
 
-    set data(data: Record<string | number, MeasurementData>) {
+    set data(data: MeasurementData) {
         this.props.data = data
     }
 
