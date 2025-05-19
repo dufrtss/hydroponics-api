@@ -37,13 +37,13 @@ export class PrismaAccountsRepository implements AccountsRepository {
         return PrismaAccountMapper.toDomain(account)
     }
 
-    async findMany({ page }: PaginationParams): Promise<Account[]> {
+    async findMany({ page, pageSize }: PaginationParams): Promise<Account[]> {
         const accounts = await this.prisma.user.findMany({
             orderBy: {
                 createdAt: 'desc'
             },
-            take: 20,
-            skip: (page - 1) * 20
+            take: pageSize,
+            skip: (page - 1) * pageSize
         })
 
         return accounts.map((account) => {

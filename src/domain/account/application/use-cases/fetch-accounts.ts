@@ -4,7 +4,8 @@ import { AccountsRepository } from '../repositories/accounts-repository'
 import { Account } from '../../enterprise/entities/account'
 
 interface FetchAccountsUseCaseRequest {
-    page: number
+    page: number,
+    pageSize: number
 }
 
 type FetchAccountsUseCaseResponse = Either<
@@ -19,10 +20,12 @@ export class FetchAccountsUseCase {
     constructor(private accountsRepository: AccountsRepository) {}
 
     async execute({
-        page
+        page,
+        pageSize
     }: FetchAccountsUseCaseRequest): Promise<FetchAccountsUseCaseResponse> {
         const accounts = await this.accountsRepository.findMany({
-            page
+            page,
+            pageSize
         })
 
         return right({

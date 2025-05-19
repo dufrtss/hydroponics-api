@@ -18,8 +18,12 @@ describe('Fetch Accounts', () => {
         }
 
         const page = 1
+        const pageSize = 20
 
-        const result = await sut.execute({ page })
+        const result = await sut.execute({
+            page,
+            pageSize
+        })
 
         expect(result.isRight()).toBe(true)
 

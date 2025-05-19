@@ -1,26 +1,20 @@
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
-import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
-import { z } from 'zod'
 import { FetchAccountsUseCase } from '@/domain/account/application/use-cases/fetch-accounts'
 import { AccountPresenter } from '../presenters/account-presenter'
-
-const pageQueryParamSchema = z
-    .string()
-    .optional()
-    .default('1')
-    .transform(Number)
-    .pipe(z.number().min(1))
-
-type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
-const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema)
+import { PaginationQueryParamSchema, paginationQueryValidationPipe } from '../validation/zod-pagination-params-validation'
 
 @Controller('/accounts')
 export class FetchAccountsController {
     constructor(private fetchAccounts: FetchAccountsUseCase) {}
 
     @Get()
-    async handle(@Query('page', queryValidationPipe) page: PageQueryParamSchema) {
-        const result = await this.fetchAccounts.execute({ page })
+    async handle(
+        @Query(paginationQueryValidationPipe) { page, pageSize }: PaginationQueryParamSchema
+    ) {
+        const result = await this.fetchAccounts.execute({
+            page,
+            pageSize
+        })
 
         if (result.isLeft()) {
             throw new BadRequestException()
