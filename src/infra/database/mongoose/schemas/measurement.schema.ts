@@ -1,3 +1,4 @@
+import { MeasurementData } from '@/domain/measurement/enterprise/entities/measurement'
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { HydratedDocument } from 'mongoose'
 
@@ -19,7 +20,7 @@ export class Measurement {
         value: { type: Number, required: true },
         unit: { type: String, required: true }
     }))
-        data!: Record<string | number, any>
+        data!: MeasurementData
 }
 
 export const MeasurementSchema = SchemaFactory.createForClass(Measurement)
