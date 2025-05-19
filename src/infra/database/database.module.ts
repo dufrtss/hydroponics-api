@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 
+import { EnvModule } from '../env/env.module'
+import { EnvService } from '../env/env.service'
+
 import { PrismaService } from './prisma/prisma.service'
 import { Measurement, MeasurementSchema } from './mongoose/schemas/measurement.schema'
 
@@ -13,6 +16,15 @@ import { MongooseAmbientHumidityRepository } from './mongoose/repositories/mongo
 
 @Module({
     imports: [
+        MongooseModule.forRootAsync({
+            imports: [EnvModule],
+            inject: [EnvService],
+            useFactory: (envService: EnvService) => {
+                return {
+                    uri: envService.get('MONGODB_DATABASE_URL'),
+                    dbName: envService.get('MONGODB_DBNAME')
+                }}
+        }),
         MongooseModule.forFeature([
             { name: Measurement.name, schema: MeasurementSchema }
         ])
