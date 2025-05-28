@@ -13,6 +13,14 @@ import { AmbientTemperatureRepository } from '@/domain/measurement/application/r
 import { MongooseAmbientTemperatureRepository } from './mongoose/repositories/mongoose-ambient-temperature-repository'
 import { AmbientHumidityRepository } from '@/domain/measurement/application/repositories/ambient-humidity-repository'
 import { MongooseAmbientHumidityRepository } from './mongoose/repositories/mongoose-ambient-humidity-repository'
+import { WaterTemperatureRepository } from '@/domain/measurement/application/repositories/water-temperature-repository'
+import { MongooseWaterTemperatureRepository } from './mongoose/repositories/mongoose-water-temperature-repository'
+import { WaterPhRepository } from '@/domain/measurement/application/repositories/water-ph-repository'
+import { MongooseWaterPhRepository } from './mongoose/repositories/mongoose-water-ph-repository'
+import { WaterTDSRepository } from '@/domain/measurement/application/repositories/water-tds-repository'
+import { MongooseWaterTDSRepository } from './mongoose/repositories/mongoose-water-tds-repository'
+import { WaterECRepository } from '@/domain/measurement/application/repositories/water-ec-repository'
+import { MongooseWaterECRepository } from './mongoose/repositories/mongoose-water-ec-repository'
 
 @Module({
     imports: [
@@ -33,13 +41,21 @@ import { MongooseAmbientHumidityRepository } from './mongoose/repositories/mongo
         PrismaService,
         { provide: AccountsRepository, useClass: PrismaAccountsRepository },
         { provide: AmbientTemperatureRepository, useClass: MongooseAmbientTemperatureRepository },
-        { provide: AmbientHumidityRepository, useClass: MongooseAmbientHumidityRepository }
+        { provide: AmbientHumidityRepository, useClass: MongooseAmbientHumidityRepository },
+        { provide: WaterTemperatureRepository, useClass: MongooseWaterTemperatureRepository },
+        { provide: WaterPhRepository, useClass: MongooseWaterPhRepository },
+        { provide: WaterTDSRepository, useClass: MongooseWaterTDSRepository },
+        { provide: WaterECRepository, useClass: MongooseWaterECRepository }
     ],
     exports: [
         PrismaService,
         AccountsRepository,
         AmbientTemperatureRepository,
-        AmbientHumidityRepository
+        AmbientHumidityRepository,
+        WaterTemperatureRepository,
+        WaterPhRepository,
+        WaterTDSRepository,
+        WaterECRepository
     ]
 })
 export class DatabaseModule {}

@@ -21,7 +21,8 @@ export class MongooseAmbientHumidityRepository implements AmbientHumidityReposit
         const measurements = await this.measurements
             .find(
                 {
-                    'data.unit': '%RH',
+                    'measurementCategory': 'AMBIENT',
+                    'measurementType': 'HUMIDITY',
                     // TODO: HIDDEN FOR NOW DUE TO SENSORS NOT PUBLISHING WITH CORRECT TIMESTAMPS
                     // timestamp: {
                     //     $gte: from.getTime(),

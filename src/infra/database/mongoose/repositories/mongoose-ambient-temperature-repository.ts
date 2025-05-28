@@ -21,7 +21,8 @@ export class MongooseAmbientTemperatureRepository implements AmbientTemperatureR
         const measurements = await this.measurements
             .find(
                 {
-                    'data.unit': '°C',
+                    'measurementCategory': 'AMBIENT',
+                    'measurementType': 'TEMPERATURE',
                     // TODO: HIDDEN FOR NOW DUE TO SENSORS NOT PUBLISHING WITH CORRECT TIMESTAMPS
                     // timestamp: {
                     //     $gte: from.getTime(),
