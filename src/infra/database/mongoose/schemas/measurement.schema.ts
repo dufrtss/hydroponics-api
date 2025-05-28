@@ -9,7 +9,17 @@ export class Measurement {
     @Prop({
         required: true
     })
-        sensor!: string
+        sensorType!: string
+
+    @Prop({
+        required: true
+    })
+        measurementCategory!: string
+
+    @Prop({
+        required: true
+    })
+        measurementType!: string
 
     @Prop({
         required: true

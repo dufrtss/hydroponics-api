@@ -8,7 +8,9 @@ export function makeMeasurement(
 ) {
     const measurement = Measurement.create(
         {
-            sensor: 'DHT22',
+            sensorType: 'DHT22',
+            measurementCategory: 'WATER',
+            measurementType: 'EC',
             timestamp: generateTimestamp(),
             data: {
                 value: Math.random() * 100,
