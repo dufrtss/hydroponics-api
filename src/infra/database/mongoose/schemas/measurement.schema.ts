@@ -14,12 +14,12 @@ export class Measurement {
     @Prop({
         required: true
     })
-        measurementCategory!: string
+        measurementCategory!: 'WATER' | 'AMBIENT'
 
     @Prop({
         required: true
     })
-        measurementType!: string
+        measurementType!: 'TEMPERATURE' | 'HUMIDITY' | 'PH' | 'TDS' | 'EC' | 'EC25C'
 
     @Prop({
         required: true

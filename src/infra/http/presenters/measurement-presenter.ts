@@ -4,7 +4,9 @@ export class MeasurementPresenter {
     static toHTTP(measurement: Measurement) {
         return {
             id: measurement.id.toString(),
-            sensor: measurement.sensor,
+            sensorType: measurement.sensorType,
+            measurementCategory: measurement.measurementCategory,
+            measurementType: measurement.measurementType,
             timestamp: measurement.timestamp,
             data: measurement.data
         }

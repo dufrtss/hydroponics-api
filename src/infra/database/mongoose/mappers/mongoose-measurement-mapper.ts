@@ -6,7 +6,9 @@ export class MongooseMeasurementMapper {
     static toDomain(raw: MeasurementDocument): Measurement {
         return Measurement.create(
             {
-                sensor: raw.sensor,
+                sensorType: raw.sensorType,
+                measurementCategory: raw.measurementCategory,
+                measurementType: raw.measurementType,
                 timestamp: raw.timestamp,
                 data: raw.data,
             },
@@ -17,7 +19,9 @@ export class MongooseMeasurementMapper {
 
     static toPersistence(entity: Measurement): MongooseMeasurement {
         return {
-            sensor: entity.sensor,
+            sensorType: entity.sensorType,
+            measurementCategory: entity.measurementCategory,
+            measurementType: entity.measurementType,
             timestamp: entity.timestamp,
             data: entity.data,
         }
