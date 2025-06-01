@@ -5,7 +5,6 @@ export const envSchema = z.object({
     POSTGRES_DATABASE_URL: z.string().url(),
     MONGODB_DATABASE_URL: z.string().url(),
     MONGODB_DBNAME: z.string(),
-    TIMEZONE: z.string(),
     JWT_SECRET: z.string(),
     JWT_PRIVATE_KEY: z.string(),
     JWT_PUBLIC_KEY: z.string()
