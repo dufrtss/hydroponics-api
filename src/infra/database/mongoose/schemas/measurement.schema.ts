@@ -24,7 +24,12 @@ export class Measurement {
     @Prop({
         required: true
     })
-        timestamp!: number
+        receivedAt!: number
+
+    @Prop({
+        required: true
+    })
+        createdAt!: number
 
     @Prop(raw({
         value: { type: Number, required: true },

@@ -7,7 +7,8 @@ export class MeasurementPresenter {
             sensorType: measurement.sensorType,
             measurementCategory: measurement.measurementCategory,
             measurementType: measurement.measurementType,
-            timestamp: measurement.timestamp,
+            receivedAt: measurement.receivedAt,
+            createdAt: measurement.createdAt,
             data: measurement.data
         }
     }

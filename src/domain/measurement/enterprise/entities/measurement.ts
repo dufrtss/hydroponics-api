@@ -11,7 +11,8 @@ export interface MeasurementProps {
   sensorType: string
   measurementCategory: 'WATER' | 'AMBIENT'
   measurementType: 'TEMPERATURE' | 'HUMIDITY' | 'PH' | 'TDS' | 'EC' | 'EC25C'
-  timestamp: number
+  receivedAt: number
+  createdAt: number
   data: MeasurementData
 }
 
@@ -28,8 +29,12 @@ export class Measurement extends Entity<MeasurementProps> {
         return this.props.measurementType
     }
 
-    get timestamp() {
-        return this.props.timestamp
+    get receivedAt() {
+        return this.props.receivedAt
+    }
+
+    get createdAt() {
+        return this.props.createdAt
     }
 
     get data() {

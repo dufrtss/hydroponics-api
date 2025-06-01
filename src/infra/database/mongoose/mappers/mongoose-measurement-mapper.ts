@@ -9,8 +9,9 @@ export class MongooseMeasurementMapper {
                 sensorType: raw.sensorType,
                 measurementCategory: raw.measurementCategory,
                 measurementType: raw.measurementType,
-                timestamp: raw.timestamp,
-                data: raw.data,
+                receivedAt: raw.receivedAt,
+                createdAt: raw.createdAt,
+                data: raw.data
             },
             new UniqueEntityID(raw._id.toString()
             )
@@ -22,8 +23,9 @@ export class MongooseMeasurementMapper {
             sensorType: entity.sensorType,
             measurementCategory: entity.measurementCategory,
             measurementType: entity.measurementType,
-            timestamp: entity.timestamp,
-            data: entity.data,
+            receivedAt: entity.receivedAt,
+            createdAt: entity.createdAt,
+            data: entity.data
         }
     }
 }
