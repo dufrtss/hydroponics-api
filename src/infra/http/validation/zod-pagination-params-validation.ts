@@ -11,7 +11,7 @@ export const paginationQueryParamSchema = z.object({
     pageSize: z
         .string()
         .optional()
-        .default('5')
+        .default('2016') // TODO: 1 week of sensor readings. Remove this and create proper routes to handle chart queries.
         .transform(Number)
         .pipe(z.number().min(5))
 })

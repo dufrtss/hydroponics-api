@@ -16,18 +16,12 @@ export class MongooseWaterTDSRepository implements WaterTDSRepository {
         { page, pageSize }: PaginationParams,
         { from, to }: TimePeriodParams
     ): Promise<Measurement[]> {
-        // TODO: REMOVE LOG
-        console.log(from, to)
         const measurements = await this.measurements
             .find(
                 {
                     'measurementCategory': 'WATER',
                     'measurementType': 'TDS',
-                    // TODO: HIDDEN FOR NOW DUE TO SENSORS NOT PUBLISHING WITH CORRECT TIMESTAMPS
-                    // timestamp: {
-                    //     $gte: from.getTime(),
-                    //     $lte: to.getTime()
-                    // }
+                    'createdAt': { $gte: from, $lte: to }
                 }
             )
             .sort({ createdAt: -1 })

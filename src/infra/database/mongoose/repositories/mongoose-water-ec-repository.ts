@@ -19,18 +19,12 @@ export class MongooseWaterECRepository implements WaterECRepository {
         { category, type }: MeasurementParams
 
     ): Promise<Measurement[]> {
-        // TODO: REMOVE LOG
-        console.log(from, to)
         const measurements = await this.measurements
             .find(
                 {
                     'measurementCategory': category,
                     'measurementType': type,
-                    // TODO: HIDDEN FOR NOW DUE TO SENSORS NOT PUBLISHING WITH CORRECT TIMESTAMPS
-                    // timestamp: {
-                    //     $gte: from.getTime(),
-                    //     $lte: to.getTime()
-                    // }
+                    'createdAt': { $gte: from, $lte: to }
                 }
             )
             .sort({ createdAt: -1 })
