@@ -30,7 +30,7 @@ export class MongooseAmbientTemperatureRepository implements AmbientTemperatureR
                     // }
                 }
             )
-            .sort({ timestamp: -1 })
+            .sort({ createdAt: -1 })
             .skip((page - 1) * pageSize)
             .limit(pageSize)
             .exec()

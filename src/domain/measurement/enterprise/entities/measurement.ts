@@ -12,7 +12,7 @@ export interface MeasurementProps {
   measurementCategory: 'WATER' | 'AMBIENT'
   measurementType: 'TEMPERATURE' | 'HUMIDITY' | 'PH' | 'TDS' | 'EC' | 'EC25C'
   receivedAt: number
-  createdAt: number
+  createdAt: Date
   data: MeasurementData
 }
 

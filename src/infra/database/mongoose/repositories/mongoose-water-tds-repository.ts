@@ -30,7 +30,7 @@ export class MongooseWaterTDSRepository implements WaterTDSRepository {
                     // }
                 }
             )
-            .sort({ timestamp: -1 })
+            .sort({ createdAt: -1 })
             .skip((page - 1) * pageSize)
             .limit(pageSize)
             .exec()
