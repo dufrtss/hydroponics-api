@@ -1,23 +1,19 @@
+import 'dotenv/config'
+
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 
-function getStartOfCurrentDay() {
-    const currentDay = new Date()
-    currentDay.setHours(0, 0, 0, 0)
-    return currentDay
-}
+import { startOfDay } from 'date-fns'
 
 export const timePeriodQueryParamSchema = z.object({
     from: z
-        .preprocess(
-            (val) => (val ? new Date(val as string) : getStartOfCurrentDay()),
-            z.date()
-        ),
+        .string()
+        .optional()
+        .transform((value) => value ? new Date(value) : startOfDay(new Date())),
     to: z
-        .preprocess(
-            (val) => (val ? new Date(val as string) : new Date()),
-            z.date()
-        ),
+        .string()
+        .optional()
+        .transform((value) => value ? new Date(value) : new Date())
 })
 
 export type TimePeriodQueryParamSchema = z.infer<typeof timePeriodQueryParamSchema>
