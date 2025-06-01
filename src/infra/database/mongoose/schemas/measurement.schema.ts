@@ -29,7 +29,7 @@ export class Measurement {
     @Prop({
         required: true
     })
-        createdAt!: number
+        createdAt!: Date
 
     @Prop(raw({
         value: { type: Number, required: true },
