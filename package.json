@@ -1,12 +1,11 @@
 {
   "name": "hydroponics-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "The REST API for the Integrated Hydroponics Farm System For Optimizing Agriculture Production project.",
   "authors": [
     "Eduardo Freitas <eduardofragadefretas@gmail.com>",
     "Sofia Martins <sofia.martinslv@hotmail.com>"
   ],
-  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "nest build",
@@ -30,7 +29,9 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "^6.7.0",
+    "@types/date-fns": "^2.5.3",
     "bcryptjs": "^3.0.2",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "mongoose": "^8.14.1",
     "passport-jwt": "^4.0.1",
